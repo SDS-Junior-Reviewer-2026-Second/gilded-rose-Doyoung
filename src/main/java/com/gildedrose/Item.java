@@ -42,15 +42,10 @@ class NormalItem extends Item {
 
     @Override
     public void advanceDay() {
-        if (this.quality <= 0) {
-            this.sellIn--;
-            return;
-        }
-
         if (this.sellIn < 0) {
-            this.quality -= 2;
+            this.quality = Math.max(this.quality - 2, 0);
         } else {
-            this.quality--;
+            this.quality = Math.max(this.quality - 1, 0);
         }
 
         this.sellIn--;
@@ -75,15 +70,10 @@ class AgedBrie extends Item {
 
     @Override
     public void advanceDay() {
-        if (this.quality >= 50) {
-            this.sellIn--;
-            return;
-        }
-
         if (this.sellIn < 0) {
-            this.quality += 2;
+            this.quality = Math.min(this.quality + 2, 50);
         } else {
-            this.quality++;
+            this.quality = Math.min(this.quality + 1, 50);
         }
 
         this.sellIn--;
@@ -101,11 +91,11 @@ class Ticket extends Item {
         if (this.sellIn < 0) {
             this.quality = 0;
         } else if (this.sellIn < 6) {
-            this.quality += 3;
+            this.quality = Math.min(this.quality + 3, 50);
         } else if (this.sellIn < 11) {
-            this.quality += 2;
+            this.quality = Math.min(this.quality + 2, 50);
         } else {
-            this.quality++;
+            this.quality = Math.min(this.quality + 1, 50);
         }
 
         this.sellIn--;

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class GildedRoseTest {
 
     @Test
-    public void test() {
+    public void updateQuality_basic() {
         Item[] items = new Item[] { Item.makeItem("naname", 0, 0) };
         GildedRose gildedRose = new GildedRose(items);
 
@@ -16,5 +16,10 @@ public class GildedRoseTest {
         assertEquals(1, items.length);
         assertEquals(-1, items[0].sellIn);
         //assertEquals(0, items[0].quality);
+    }
+
+    @Test
+    public void updateQuality_AgedBrie_negativeSellIn_increasesQuality() {
+        Item[] items = new Item[] { Item.makeItem("Aged Brie", 2, 0) };
     }
 }
