@@ -2,6 +2,12 @@ package com.gildedrose;
 
 public abstract class Item {
 
+    private static final String CONJURED = "Conjured";
+    private static final String BACKSTAGE_PASSES =
+        "Backstage passes to a TAFKAL80ETC concert";
+    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String AGED_BRIE = "Aged Brie";
+
     public String name;
 
     public int sellIn;
@@ -17,13 +23,13 @@ public abstract class Item {
     public abstract void advanceDay();
 
     public static Item makeItem(String name, int sellIn, int quality) {
-        if (name.equals("Aged Brie")) {
+        if (name.equals(AGED_BRIE)) {
             return new AgedBrie(name, sellIn, quality);
-        } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        } else if (name.equals(BACKSTAGE_PASSES)) {
             return new Ticket(name, sellIn, quality);
-        } else if (name.equals("Sulfuras, Hand of Ragnaros")) {
+        } else if (name.equals(SULFURAS)) {
             return new LegendaryItem(name, sellIn);
-        } else if (name.equals("Conjured")) {
+        } else if (name.equals(CONJURED)) {
             return new ConjuredItem(name, sellIn, quality);
         } else {
             return new NormalItem(name, sellIn, quality);
