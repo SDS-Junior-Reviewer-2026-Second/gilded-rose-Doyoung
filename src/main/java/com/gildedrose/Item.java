@@ -23,6 +23,8 @@ public abstract class Item {
             return new Ticket(name, sellIn, quality);
         } else if (name.equals("Sulfuras, Hand of Ragnaros")) {
             return new LegendaryItem(name, sellIn);
+        } else if (name.equals("Conjured")) {
+            return new ConjuredItem(name, sellIn, quality);
         } else {
             return new NormalItem(name, sellIn, quality);
         }
@@ -96,6 +98,24 @@ class Ticket extends Item {
             this.quality = Math.min(this.quality + 2, 50);
         } else {
             this.quality = Math.min(this.quality + 1, 50);
+        }
+
+        this.sellIn--;
+    }
+}
+
+class ConjuredItem extends Item {
+
+    public ConjuredItem(String name, int sellIn, int quality) {
+        super(name, sellIn, quality);
+    }
+
+    @Override
+    public void advanceDay() {
+        if (this.sellIn < 0) {
+            this.quality = Math.max(this.quality - 4, 0);
+        } else {
+            this.quality = Math.max(this.quality - 2, 0);
         }
 
         this.sellIn--;
